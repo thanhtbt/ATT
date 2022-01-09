@@ -1,6 +1,6 @@
 addpath(pwd);
 
-cd Toolbox/;
+cd Toolboox/;
 addpath(genpath(pwd));
 cd ..;
 
