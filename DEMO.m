@@ -27,16 +27,10 @@ for ii = 1:n_exp
     [PER,~,~] = TT_FOA(X,tt_rank,OPTS_PER);
     toc(t_start);
     PER0 = PER0 + PER;
-           
-      
+              
 end
 
-
-%% Error Bound
-
-
 PER0 = PER0/n_exp;
-PER1 = PER1/n_exp;
  
 %% Plot
 
