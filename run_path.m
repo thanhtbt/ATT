@@ -4,6 +4,6 @@ cd Toolboox/;
 addpath(genpath(pwd));
 cd ..;
 
-cd Utilities/;
+cd Utilites/;
 addpath(genpath(pwd));
 cd ..;
