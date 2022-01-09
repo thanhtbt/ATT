@@ -11,9 +11,7 @@ fac_time_varying = 1e-4;
 epsilon      = fac_time_varying*ones(1,tt_dim(end));
 epsilon(300) = 1; % Aim to create a significant change at t = 300
 
-
 PER0  = zeros(1,tt_dim(end));
-PER1  = zeros(1,tt_dim(end));
 
 for ii = 1:n_exp
     fprintf(' run %d/%d \n',ii,n_exp);
@@ -29,11 +27,7 @@ for ii = 1:n_exp
     [PER,~,~] = TT_FOA(X,tt_rank,OPTS_PER);
     toc(t_start);
     PER0 = PER0 + PER;
-        
-    t_start = tic;
-    [PER,~,~] = TT_FOA_S(X,tt_rank,OPTS_PER);
-    toc(t_start);
-    PER1 = PER1 + PER;        
+           
       
 end
 
@@ -82,18 +76,7 @@ d12 = semilogy(1:1,PER0(1:1),...
     'marker','p','markersize',makerSize,...
     'linestyle','-','color',red_o,'LineWidth',LineWidth);
 
-
-d2 = semilogy(1:k:T,PER1(1:k:end),...
-    'linestyle','-','color',blue_o,'LineWidth',LineWidth);
-hold on;
-d21 = plot(1:100:T,PER1(1:100:end),...
-    'marker','^','markersize',makerSize,...
-    'linestyle','none','color',blue_o,'LineWidth',LineWidth);
-d22 = semilogy(1:1,PER1(1:1),...
-    'marker','^','markersize',makerSize,...
-    'linestyle','-','color',blue_o,'LineWidth',LineWidth);
-
-lgd = legend([d12,d22],'\texttt{TT-FOA}','\texttt{TT-FOA(Stochastic)}');
+lgd = legend([d12],'\texttt{TT-FOA}');
 lgd.FontSize = 18;
 set(lgd, 'Interpreter', 'latex', 'Color', [0.95, 0.95, 0.95]);
 %
@@ -103,7 +86,7 @@ ylabel('RE$(\mathcal{X}_{tr},\mathcal{X}_{es})$','interpreter','latex','FontSize
 set(fig, 'units', 'inches', 'position', [0.5 0.5 7.5 6.5]);
 h=gca;
 set(h,'FontSize',16,'XGrid','on','YGrid','on','GridLineStyle',':','MinorGridLineStyle',':','FontName','Times New Roman');
-set(h,'FontSize', 22);
+set(h,'FontSize', 24);
 % axis([0 T 1*1e-4 1e1]);
 grid on;
 set(h, 'YScale', 'log','box','on')
