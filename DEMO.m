@@ -16,13 +16,15 @@ PER0  = zeros(1,tt_dim(end));
 for ii = 1:n_exp
     fprintf(' run %d/%d \n',ii,n_exp);
     
+    %% Data Generation
     [Xtrue,tt_core] = tt_generate_tensor(tt_dim,tt_rank,epsilon);
     X = Xtrue + fac_noise*randn(tt_dim);
-      
+  
+    
+    %% Algorithm
     OPTS_PER.Xtrue = Xtrue;
     OPTS_PER.lambda = 0.7;
     
-     %% Algorithms
     t_start = tic;
     [PER,~,~] = TT_FOA(X,tt_rank,OPTS_PER);
     toc(t_start);
